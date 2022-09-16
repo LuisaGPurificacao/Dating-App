@@ -8,13 +8,13 @@ public class Interest {
 	private String hobbies;
 	private String profileUrl;
 	private String about;
+	private static int SEQUENCIAL = 1;
 
 	public Interest() {
 	}
 
-	public Interest(int id, String likes, String dislikes, String hobbies, String profileUrl, String about) {
-		super();
-		this.id = id;
+	public Interest(String likes, String dislikes, String hobbies, String profileUrl, String about) {
+		this.id = SEQUENCIAL++;
 		this.likes = likes;
 		this.dislikes = dislikes;
 		this.hobbies = hobbies;
@@ -24,8 +24,8 @@ public class Interest {
 
 	@Override
 	public String toString() {
-		return "Interest [id= " + id + ", likes= " + likes + ", dislikes= " + dislikes + ", hobbies= " + hobbies
-				+ ", profileUrl= " + profileUrl + ", about= " + about + "]";
+		return "Interest\nID: " + id + "\nLikes: " + likes + "\nDislikes: " + dislikes + "\nHobbies: " + hobbies
+				+ "\nProfile Url: " + profileUrl + "\nAbout: " + about;
 	}
 
 	public int getId() {

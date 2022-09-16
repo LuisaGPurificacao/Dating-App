@@ -14,13 +14,14 @@ public class UserAccount {
 	private String city;
 	private String country;
 	private Interest interest;
+	private static int SEQUENCIAL = 1;
 
 	public UserAccount() {
 	}
 
-	public UserAccount(int id, String userName, String password, int age, String email, String phoneNumber,
-			String gender, String city, String country, Interest interest) {
-		this.id = id;
+	public UserAccount(String userName, String password, int age, String email, String phoneNumber,
+			String gender, String city, String country) {
+		this.id = SEQUENCIAL++;
 		this.userName = userName;
 		this.password = password;
 		this.age = age;
@@ -29,7 +30,6 @@ public class UserAccount {
 		this.gender = gender;
 		this.city = city;
 		this.country = country;
-		this.interest = interest;
 	}
 
 	@Override

@@ -8,10 +8,10 @@ import java.util.Map;
 
 import br.com.core.java.model.UserAccount;
 
-public class UserAccountDAO implements UserAccountDAOInterface{
-	
+public class UserAccountDAO implements UserAccountDAOInterface {
+
 	Map<Integer, UserAccount> users = new HashMap<>();
-	
+
 	@Override
 	public void save(UserAccount user) {
 		users.put(user.getId(), user);
@@ -43,6 +43,5 @@ public class UserAccountDAO implements UserAccountDAOInterface{
 	public void delete(int id) {
 		users.remove(id);
 	}
-
 
 }
