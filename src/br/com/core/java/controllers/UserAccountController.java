@@ -25,26 +25,7 @@ public class UserAccountController {
 			switch (opcao) {
 			// Add a new user
 			case 1:
-				System.out.println("What's your name?");
-				String name = scan.next() + scan.nextLine();
-				System.out.println("Enter your password:");
-				String password = scan.next() + scan.nextLine();
-				System.out.println("What's your age?");
-				int age = scan.nextInt();
-				System.out.println("What's your e-mail?");
-				String email = scan.next() + scan.nextLine();
-				System.out.println("What's your phone number?");
-				String phone = scan.next() + scan.nextLine();
-				System.out.println("What's your gender?");
-				String gender = scan.next() + scan.nextLine();
-				System.out.println("What's the city where you live?");
-				String city = scan.next() + scan.nextLine();
-				System.out.println("What's your country?");
-				String country = scan.next() + scan.nextLine();
-
-				UserAccount user = new UserAccount(name, password, age, email, phone, gender, city, country);
-				dao.save(user);
-				System.out.println("User account saved :)");
+				createNewAccount(dao, scan);
 				break;
 
 			// Find an user by the ID
@@ -77,7 +58,7 @@ public class UserAccountController {
 				int id2 = scan.nextInt();
 				System.out.println("Are you sure you want to remove user " + id2 + "? (Y/N)");
 				String opcao2 = scan.next() + scan.nextLine();
-				if (opcao2.equals("Y")) {
+				if (opcao2.equalsIgnoreCase("Y")) {
 					dao.delete(id2);
 					System.out.println("User account removed.");
 				} else {
@@ -97,37 +78,27 @@ public class UserAccountController {
 
 	}
 
-	public void findAllUsers() {
-		UserAccountDAOInterface dao = new UserAccountDAO();
-		createUsers(dao);
+	private static void createNewAccount(UserAccountDAO dao, Scanner scan) {
+		System.out.println("What's your name?");
+		String name = scan.next() + scan.nextLine();
+		System.out.println("Enter your password:");
+		String password = scan.next() + scan.nextLine();
+		System.out.println("What's your age?");
+		int age = scan.nextInt();
+		System.out.println("What's your e-mail?");
+		String email = scan.next() + scan.nextLine();
+		System.out.println("What's your phone number?");
+		String phone = scan.next() + scan.nextLine();
+		System.out.println("What's your gender?");
+		String gender = scan.next() + scan.nextLine();
+		System.out.println("What's the city where you live?");
+		String city = scan.next() + scan.nextLine();
+		System.out.println("What's your country?");
+		String country = scan.next() + scan.nextLine();
 
-		// dao.delete(1);
-
-		System.out.println(dao.findAll());
-
-	}
-
-	public void findMatchingUsers() {
-		UserAccountDAOInterface dao = new UserAccountDAO();
-		createUsers(dao);
-
-		System.out.println(dao.findMatches(17, "São Paulo"));
-	}
-
-	private void createUsers(UserAccountDAOInterface dao) {
-		Interest interest = new Interest("watching movies", "sertanejo", "playing games", "www.luisa.com.br",
-				"I love dogs");
-		UserAccount user = new UserAccount("Luisa", "senha123", 17, "luisa@gmail.com", "11 950311021", "F", "São Paulo",
-				"Brasil");
-
+		UserAccount user = new UserAccount(name, password, age, email, phone, gender, city, country);
 		dao.save(user);
-
-		Interest interest2 = new Interest("cooking", "people that are not nice", "drawing", "www.maria.com",
-				"I am in college");
-		UserAccount user2 = new UserAccount("Maria", "password123", 23, "maria@gmail.com", "11 912345698", "F",
-				"Austin", "USA");
-
-		dao.save(user2);
+		System.out.println("User account saved :)");
 	}
-
+	
 }
